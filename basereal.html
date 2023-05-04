@@ -1,0 +1,89 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Real Estate Website</title>
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <script src="{% static 'js/script.js'%}"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+  <link rel="stylesheet" href="{% static 'css/style.css' %}" type="text/css" media="all" />
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <script type="text/javascript" src="{% static 'js/script.js' %}"></script>   
+    <!-- Custom CSS -->
+
+
+
+    <link rel="stylesheet" href="style.css"> 
+    
+</head>
+<body>
+    <!-- Header -->
+    
+    <header>
+        <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top">
+            <a class="navbar-brand" href="{% url 'index' %}">Real Estate Website</a>
+            {% comment %} <a class="navbar-brand" href="#">Location :: City</a> {% endcomment %}
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item active">
+                        <a class="nav-link" href="{% url 'index' %}">Home</a>
+                    </li>
+                    <li class="nav-item">
+                      {{request.user.first_name}}
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'property_for_sale' %}">Property for sale</a>
+                    </li>
+                    <li class="nav-item">
+                      <a class="nav-link" href="{% url 'property_for_rent' %}"> Property for rent</a>
+                  </li>
+
+                  <li class="nav-item">
+                    <a class="nav-link" href="{% url 'add_post' %}"> Post free add</a>
+                </li>
+              
+                {% if request.user.is_authenticated %}
+                  <li class="nav-item">
+                    <a class="nav-link" href="{% url 'signout' %}"><submit>Logout</submit></a>
+                </li>
+
+                <li class="nav-item">
+                  <a class="nav-link" href="{% url 'get_my_account' %}">Account</a>
+              </li>
+
+                <li class="nav-item">
+                  <a class="nav-link" href="{% url 'my_sale_properies' %}"> Get my sale Property</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="{% url 'my_rent_properies' %}"> Get my rent Property</a>
+            </li>
+                {% else %}
+                <li class="nav-item">
+                  <a class="nav-link" href="{% url 'signin' %}">Login</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="{% url 'register' %}">Registration</a>
+            </li>
+                {%endif%}
+                </ul>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Banner -->
+
+
+    {%block main-content %} {%endblock main-content%}
+    
+
+      
+      </body>
+      </html>
